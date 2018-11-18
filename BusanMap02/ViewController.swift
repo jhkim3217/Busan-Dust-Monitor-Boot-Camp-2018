@@ -332,10 +332,7 @@ class ViewController: UIViewController, MKMapViewDelegate, XMLParserDelegate, CL
         let reuseID = "MyPin"
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseID) as? MKMarkerAnnotationView
         //let label = UILabel(frame: CGRect(x: -2, y: 12, width: 30, height: 30))
-        
-    
-        
-        
+  
         let seg_index = segControlBtn.selectedSegmentIndex
         print("s_index = \(seg_index)")
         
