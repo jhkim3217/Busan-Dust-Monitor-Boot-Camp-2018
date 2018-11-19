@@ -347,38 +347,48 @@ class ViewController: UIViewController, MKMapViewDelegate, XMLParserDelegate, CL
             annotationView!.canShowCallout = true
             //annotationView?.animatesDrop = true
             
-            annotationView!.clusteringIdentifier = "ClusID"
+//            annotationView!.clusteringIdentifier = reuseID
 //            annotationView?.markerTintColor = UIColor.red
 
             let castBusanData = annotationView!.annotation as? BusanData
             
             if seg_index == 0 {
-//                let pm10Val = castBusanData?.pm10
-                let pm10ValCai = castBusanData?.pm10Cai
-                print("pm10 val = \(String(describing: pm10ValCai))")
+                let pm10Val = castBusanData?.pm10
+                //let pm10ValCai = castBusanData?.pm10Cai
+                //print("pm10 val = \(String(describing: pm10ValCai))")
                 
 //                label.textColor = UIColor.red
 //                label.text = pm10Val
 //                annotationView!.addSubview(label)
 //                print("pm10 = \(String(describing: label.text))")
-                print("pm10 Cai = \(String(describing: pm10ValCai))")
+                //print("pm10 Cai = \(String(describing: pm10ValCai))")
+                annotationView?.glyphTintColor = UIColor.lightGray
+                annotationView?.glyphText = pm10Val
                 
-                switch pm10ValCai {
-                    case "4": annotationView?.markerTintColor = UIColor.red // 매우나쁨
-                    case "3": annotationView?.markerTintColor = UIColor.orange // 나쁨
-                    case "2": annotationView?.markerTintColor = UIColor.blue // 보통
-                    case "1" : annotationView?.markerTintColor = UIColor.green // 좋음
-                    default: annotationView?.markerTintColor = UIColor.black// 오류
-//                    case "4": annotationView?.image = UIImage(named: "marker-30")// 매우나쁨
-//                    case "3": annotationView?.image = UIImage(named: "marker-30")// 나쁨
-//                    case "2": annotationView?.image = UIImage(named: "marker-30") // 보통
-//                    case "1" : annotationView?.image = UIImage(named: "marker-30") // 좋음
-//                    default: annotationView?.image = UIImage(named: "marker-30")// 오류
-                    
+                let iPm10Val: Int = Int(pm10Val!)!
+                switch Int(iPm10Val) {
+                case 0..<31:
+                    annotationView?.markerTintColor = UIColor.blue // 좋음
+                case 31..<81:
+                    annotationView?.markerTintColor = UIColor.green // 보통
+                case 81..<151:
+                    annotationView?.markerTintColor = UIColor.yellow
+                case 151..<600:
+                    annotationView?.markerTintColor = UIColor.red // 매우나쁨
+                default : break
                 }
                 
+//                switch pm10ValCai {
+//                    case "4": annotationView?.markerTintColor = UIColor.red // 매우나쁨
+//                    case "3": annotationView?.markerTintColor = UIColor.orange // 나쁨
+//                    case "2": annotationView?.markerTintColor = UIColor.green // 보통
+//                    case "1" : annotationView?.markerTintColor = UIColor.blue // 좋음
+//                    //default: annotationView?.markerTintColor = UIColor.black// 오류
+//                    default : break
+//                }
+                
             } else if seg_index == 1 {
-//                let pm25Val = castBusanData!.pm25
+                let pm25Val = castBusanData!.pm25
                 let pm25CalCai = castBusanData?.pm25Cai
                 print("pm25 val = \(String(describing: pm25CalCai))")
 
@@ -387,18 +397,30 @@ class ViewController: UIViewController, MKMapViewDelegate, XMLParserDelegate, CL
 //                annotationView!.addSubview(label)
                 print("pm25 = \(String(describing: pm25CalCai))")
                 print("pm25 Cai = \(String(describing: pm25CalCai))")
+                
+                annotationView?.glyphTintColor = UIColor.lightGray
+                annotationView?.glyphText = pm25Val
+                
+                let iPm25Val: Int = Int(pm25Val!)!
+                switch Int(iPm25Val) {
+                case 0..<16:
+                    annotationView?.markerTintColor = UIColor.blue // 좋음
+                case 16..<35:
+                    annotationView?.markerTintColor = UIColor.green // 보통
+                case 36..<75:
+                    annotationView?.markerTintColor = UIColor.yellow
+                case 76..<500:
+                    annotationView?.markerTintColor = UIColor.red // 매우나쁨
+                default : break
+                }
 
                 switch pm25CalCai {
                     case "4": annotationView?.markerTintColor = UIColor.red // 매우나쁨
                     case "3": annotationView?.markerTintColor = UIColor.orange // 나쁨
-                    case "2": annotationView?.markerTintColor = UIColor.blue // 보통
-                    case "1" : annotationView?.markerTintColor = UIColor.green // 좋음
-                    default: annotationView?.markerTintColor = UIColor.black // 오류
-//                    case "4": annotationView?.image = UIImage(named: "marker-30")// 매우나쁨
-//                    case "3": annotationView?.image = UIImage(named: "marker-30")// 나쁨
-//                    case "2": annotationView?.image = UIImage(named: "marker-30") // 보통
-//                    case "1" : annotationView?.image = UIImage(named: "marker-30") // 좋음
-//                    default: annotationView?.image = UIImage(named: "marker-30")// 오류
+                    case "2": annotationView?.markerTintColor = UIColor.green // 보통
+                    case "1" : annotationView?.markerTintColor = UIColor.blue // 좋음
+                    //default: annotationView?.markerTintColor = UIColor.black // 오류
+                default : break
                 }
             }
             
