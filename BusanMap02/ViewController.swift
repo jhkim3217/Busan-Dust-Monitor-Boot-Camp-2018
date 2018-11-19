@@ -341,13 +341,14 @@ class ViewController: UIViewController, MKMapViewDelegate, XMLParserDelegate, CL
             return nil
         }
         
+        
         if annotationView == nil {
             annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
             annotationView!.canShowCallout = true
             //annotationView?.animatesDrop = true
             
             annotationView!.clusteringIdentifier = "ClusID"
-            annotationView?.markerTintColor = UIColor.red
+//            annotationView?.markerTintColor = UIColor.red
 
             let castBusanData = annotationView!.annotation as? BusanData
             

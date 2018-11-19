@@ -15,10 +15,8 @@ class BusanData: NSObject, MKAnnotation {
     var subtitle: String?
     var pm10: String?
     var pm10Cai: String?
-    
     var pm25: String?
     var pm25Cai: String?
-    
     var area: String? // 용도
     var network: String? // 측정망
     
