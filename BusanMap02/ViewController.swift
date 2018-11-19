@@ -109,84 +109,26 @@ class ViewController: UIViewController, MKMapViewDelegate, XMLParserDelegate, CL
         
         //zoomToRegion()
         mapDisplay()
-        
-        ////
-////        pm10MapDisplay()
-//        for item in items {
-//            let dSite = item["site"]
-////            print("dSite = \(String(describing: dSite))")
-//
-//            // 추가 데이터 처리
-//            for (key, value) in addrs {
-//                if key == dSite {
-//                    address = value[0]
-//                    lat = value[1]
-//                    long = value[2]
-//                    loc = value[3]
-//                    dArea = value[4]
-//                    dNet = value[5]
-//                    dLat = Double(lat!)
-//                    dLong = Double(long!)
-//                }
-//            }
-//
-//            // 파싱 데이터 처리
-//            let dPM10 = item["pm10"]
-//            let dPM10Cai = item["pm10Cai"]
-//            let dPM25 = item["pm25"]
-//            let dPM25Cai = item["pm25Cai"]
-//
-////            print("dMP10 = \(String(describing: dPM10))")
-////            print("dPM10Cai = \(String(describing: dPM10Cai))")
-//
-//            switch dPM10Cai {
-//                case "1": vPM10Cai = "좋음"
-//                case "2": vPM10Cai = "보통"
-//                case "3": vPM10Cai = "나쁨"
-//                case "4": vPM10Cai = "아주나쁨"
-//                default : vPM10Cai = "오류"
-//            }
-//
-//            switch dPM25Cai {
-//                case "1": vPM25Cai = "좋음"
-//                case "2": vPM25Cai = "보통"
-//                case "3": vPM25Cai = "나쁨"
-//                case "4": vPM25Cai = "아주나쁨"
-//                default : vPM25Cai = "오류"
-//            }
-//
-//            annotation = BusanData(coordinate: CLLocationCoordinate2D(latitude: dLat!, longitude: dLong!),
-//                                   title: dSite!, subtitle: loc!,
-//                                   pm10: dPM10!, pm10Cai: dPM10Cai!,
-//                                   pm25: dPM25!, pm25Cai: dPM25Cai!,
-//                                   area: dArea!, network: dNet!)
-//
-//            annotations.append(annotation!)
-//        }
-
-//        myMapView.showAnnotations(annotations, animated: true)
     }
     
     // Segment Control function
-    
     @IBAction func segControlPressed(_ sender: Any) {
         if segControlBtn.selectedSegmentIndex == 0 {
             print("Seg o pressed")
            // zoomToRegion()
             
-            //removeAllAnnotations()
+            removeAllAnnotations()
             mapDisplay()
             
         } else if segControlBtn.selectedSegmentIndex == 1 {
             print("Seg 1 pressed")
             //zoomToRegion()
-            //removeAllAnnotations()
+            removeAllAnnotations()
             mapDisplay()
         }
     }
     
     func mapDisplay() {
-        
         for item in items {
             let dSite = item["site"]
             //            print("dSite = \(String(describing: dSite))")
@@ -210,25 +152,6 @@ class ViewController: UIViewController, MKMapViewDelegate, XMLParserDelegate, CL
             let dPM10Cai = item["pm10Cai"]
             let dPM25 = item["pm25"]
             let dPM25Cai = item["pm25Cai"]
-            
-            //            print("dMP10 = \(String(describing: dPM10))")
-            //            print("dPM10Cai = \(String(describing: dPM10Cai))")
-            
-//            switch dPM10Cai {
-//            case "1": vPM10Cai = "좋음"
-//            case "2": vPM10Cai = "보통"
-//            case "3": vPM10Cai = "나쁨"
-//            case "4": vPM10Cai = "아주나쁨"
-//            default : vPM10Cai = "오류"
-//            }
-//            
-//            switch dPM25Cai {
-//            case "1": vPM25Cai = "좋음"
-//            case "2": vPM25Cai = "보통"
-//            case "3": vPM25Cai = "나쁨"
-//            case "4": vPM25Cai = "아주나쁨"
-//            default : vPM25Cai = "오류"
-//            }
             
             annotation = BusanData(coordinate: CLLocationCoordinate2D(latitude: dLat!, longitude: dLong!),
                                    title: dSite!, subtitle: loc!,
@@ -267,9 +190,9 @@ class ViewController: UIViewController, MKMapViewDelegate, XMLParserDelegate, CL
                     let dayTimePeriodFormat = DateFormatter()
                     dayTimePeriodFormat.dateFormat = "YYYY/MM/dd HH시"
                     currentTime = dayTimePeriodFormat.string(from: date)
-//                    for item in items {
-////                        print("item pm10 = \(item["pm10"]!)")
-//                    }
+                    for item in items {
+                        print("Station = \(item["site"]!) item pm10 = \(item["pm10"]!)")
+                    }
                     
                 } else {
                     print("parsing fail")
@@ -334,28 +257,35 @@ class ViewController: UIViewController, MKMapViewDelegate, XMLParserDelegate, CL
         //let label = UILabel(frame: CGRect(x: -2, y: 12, width: 30, height: 30))
   
         let seg_index = segControlBtn.selectedSegmentIndex
-        print("s_index = \(seg_index)")
+        //print("s_index = \(seg_index)")
+        
+        var iPm10Val = 0
+        var iPm25Val = 0
         
         // Leave default annotation for user location
         if annotation is MKUserLocation {
             return nil
         }
         
-        
         if annotationView == nil {
             annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
             annotationView!.canShowCallout = true
+            annotationView?.animatesWhenAdded = true
+            
             //annotationView?.animatesDrop = true
             
-//            annotationView!.clusteringIdentifier = reuseID
+//            annotationView!.clusteringIdentifier = "re"
 //            annotationView?.markerTintColor = UIColor.red
 
             let castBusanData = annotationView!.annotation as? BusanData
             
             if seg_index == 0 {
                 let pm10Val = castBusanData?.pm10
+
+                //let pm10Val = castBusanData?.pm10
+                let pm10Station = castBusanData?.title
                 //let pm10ValCai = castBusanData?.pm10Cai
-                //print("pm10 val = \(String(describing: pm10ValCai))")
+                print("\(String(describing: pm10Station)) pm10 val = \(String(describing: pm10Val))")
                 
 //                label.textColor = UIColor.red
 //                label.text = pm10Val
@@ -365,18 +295,25 @@ class ViewController: UIViewController, MKMapViewDelegate, XMLParserDelegate, CL
                 annotationView?.glyphTintColor = UIColor.lightGray
                 annotationView?.glyphText = pm10Val
                 
-                let iPm10Val: Int = Int(pm10Val!)!
-                switch Int(iPm10Val) {
-                case 0..<31:
-                    annotationView?.markerTintColor = UIColor.blue // 좋음
-                case 31..<81:
-                    annotationView?.markerTintColor = UIColor.green // 보통
-                case 81..<151:
-                    annotationView?.markerTintColor = UIColor.yellow
-                case 151..<600:
-                    annotationView?.markerTintColor = UIColor.red // 매우나쁨
-                default : break
+                if pm10Val != nil {
+                    iPm10Val = Int(pm10Val!)!
+                } else {
+                    // dumy value
+                    iPm10Val = 30
                 }
+                
+                switch iPm10Val {
+                    case 0..<31:
+                        annotationView?.markerTintColor = UIColor.blue // 좋음
+                    case 31..<81:
+                        annotationView?.markerTintColor = UIColor.green // 보통
+                    case 81..<151:
+                        annotationView?.markerTintColor = UIColor.yellow
+                    case 151..<600:
+                        annotationView?.markerTintColor = UIColor.red // 매우나쁨
+                    default : break
+                }
+                
                 
 //                switch pm10ValCai {
 //                    case "4": annotationView?.markerTintColor = UIColor.red // 매우나쁨
@@ -388,40 +325,51 @@ class ViewController: UIViewController, MKMapViewDelegate, XMLParserDelegate, CL
 //                }
                 
             } else if seg_index == 1 {
-                let pm25Val = castBusanData!.pm25
-                let pm25CalCai = castBusanData?.pm25Cai
-                print("pm25 val = \(String(describing: pm25CalCai))")
+                
+                if let pm25Val = castBusanData?.pm25 {
+                    iPm25Val = Int(pm25Val)!
+                } else {
+                    // dumy value
+                    iPm25Val = 20
+                }
+                
+//                if pm25Val != nil {
+//                    iPm25Val = Int(pm25Val!)!
+//                } else {
+//                    iPm25Val = 20
+//                }
+                //let pm25CalCai = castBusanData?.pm25Cai
+                //print("pm25 val = \(String(describing: pm25CalCai))")
 
 //                label.textColor = UIColor.blue
 //                label.text = pm25Val
 //                annotationView!.addSubview(label)
-                print("pm25 = \(String(describing: pm25CalCai))")
-                print("pm25 Cai = \(String(describing: pm25CalCai))")
+                //print("pm25 = \(String(describing: pm25CalCai))")
+                //print("pm25 Cai = \(String(describing: pm25CalCai))")
                 
                 annotationView?.glyphTintColor = UIColor.lightGray
-                annotationView?.glyphText = pm25Val
-                
-                let iPm25Val: Int = Int(pm25Val!)!
-                switch Int(iPm25Val) {
+                annotationView?.glyphText = String(iPm25Val)
+
+                switch iPm25Val {
                 case 0..<16:
                     annotationView?.markerTintColor = UIColor.blue // 좋음
-                case 16..<35:
+                case 16..<36:
                     annotationView?.markerTintColor = UIColor.green // 보통
                 case 36..<75:
-                    annotationView?.markerTintColor = UIColor.yellow
+                    annotationView?.markerTintColor = UIColor.yellow // 나쁨
                 case 76..<500:
                     annotationView?.markerTintColor = UIColor.red // 매우나쁨
                 default : break
                 }
 
-                switch pm25CalCai {
-                    case "4": annotationView?.markerTintColor = UIColor.red // 매우나쁨
-                    case "3": annotationView?.markerTintColor = UIColor.orange // 나쁨
-                    case "2": annotationView?.markerTintColor = UIColor.green // 보통
-                    case "1" : annotationView?.markerTintColor = UIColor.blue // 좋음
-                    //default: annotationView?.markerTintColor = UIColor.black // 오류
-                default : break
-                }
+//                switch pm25CalCai {
+//                    case "4": annotationView?.markerTintColor = UIColor.red // 매우나쁨
+//                    case "3": annotationView?.markerTintColor = UIColor.orange // 나쁨
+//                    case "2": annotationView?.markerTintColor = UIColor.green // 보통
+//                    case "1" : annotationView?.markerTintColor = UIColor.blue // 좋음
+//                    //default: annotationView?.markerTintColor = UIColor.black // 오류
+//                default : break
+//                }
             }
             
         } else {
@@ -440,15 +388,29 @@ class ViewController: UIViewController, MKMapViewDelegate, XMLParserDelegate, CL
         if segControlBtn.selectedSegmentIndex == 0 {
             let vPM10 = viewAnno.pm10
             let vStation = viewAnno.title
-            let vPM10Cai = viewAnno.pm10Cai
             
-            switch vPM10Cai {
-                case "1": mPM10Cai = "좋음"
-                case "2": mPM10Cai = "보통"
-                case "3": mPM10Cai = "나쁨"
-                case "4": mPM10Cai = "아주나쁨"
-                default : mPM10Cai = "오류"
+            print("vPm10 = \(String(describing: vPM10))")
+            let dPM10: Int = Int(vPM10!)!
+            
+            switch Int(dPM10) {
+            case 0..<31:
+                mPM10Cai = "좋음" // 좋음
+            case 31..<81:
+                mPM10Cai = "보통"// 보통
+            case 81..<151:
+                mPM10Cai = "나쁨" // 나쁨
+            case 76..<500:
+                mPM10Cai = "매우나쁨" // 매우나쁨
+            default : break
             }
+            
+//            switch vPM10Cai {
+//                case "1": mPM10Cai = "좋음"
+//                case "2": mPM10Cai = "보통"
+//                case "3": mPM10Cai = "나쁨"
+//                case "4": mPM10Cai = "아주나쁨"
+//                default : break
+//            }
             
             let mTitle = "미세먼지(PM 10) : \(mPM10Cai!)(\(vPM10!) ug/m3)"
             let ac = UIAlertController(title: vStation! + " 대기질 측정소", message: nil, preferredStyle: .alert)
@@ -462,15 +424,31 @@ class ViewController: UIViewController, MKMapViewDelegate, XMLParserDelegate, CL
         } else if segControlBtn.selectedSegmentIndex == 1 {
             let vPM25 = viewAnno.pm25
             let vStation = viewAnno.title
-            let vPM25Cai = viewAnno.pm10Cai
+            //let vPM25Cai = viewAnno.pm10Cai
             
-            switch vPM25Cai {
-                case "1": mPM25Cai = "좋음"
-                case "2": mPM25Cai = "보통"
-                case "3": mPM25Cai = "나쁨"
-                case "4": mPM25Cai = "아주나쁨"
-                default : mPM25Cai = "오류"
+            print("PM25 = \(String(describing: vPM25))")
+            
+            let dPM25: Int = Int(vPM25!)!
+            
+            switch Int(dPM25) {
+            case 0..<31:
+                mPM25Cai = "좋음" // 좋음
+            case 31..<81:
+                mPM25Cai = "보통"// 보통
+            case 81..<151:
+                mPM25Cai = "나쁨" // 나쁨
+            case 76..<500:
+                mPM25Cai = "매우나쁨" // 매우나쁨
+            default : break
             }
+            
+//            switch vPM25Cai {
+//                case "1": mPM25Cai = "좋음"
+//                case "2": mPM25Cai = "보통"
+//                case "3": mPM25Cai = "나쁨"
+//                case "4": mPM25Cai = "아주나쁨"
+//                default : mPM25Cai = "오류"
+//            }
             
             let mTitle = "미세먼지(PM 2.5) : \(mPM25Cai!)(\(vPM25!) ug/m3)"
             let ac = UIAlertController(title: vStation! + " 대기질 측정소", message: nil, preferredStyle: .alert)

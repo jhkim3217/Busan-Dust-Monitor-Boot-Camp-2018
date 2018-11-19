@@ -22,11 +22,10 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                             </mapView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vvS-Hl-hhe">
-                                <rect key="frame" x="107" y="84" width="161" height="29"/>
+                                <rect key="frame" x="134" y="84" width="107" height="29"/>
                                 <segments>
                                     <segment title="PM10"/>
                                     <segment title="PM2.5"/>
-                                    <segment title="O3"/>
                                 </segments>
                                 <connections>
                                     <action selector="segControlPressed:" destination="BYZ-38-t0r" eventType="valueChanged" id="xex-dH-XaP"/>
