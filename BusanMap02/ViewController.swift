@@ -265,13 +265,13 @@ class ViewController: UIViewController, MKMapViewDelegate, XMLParserDelegate, CL
         switch stepVal {
         case 1:
             print("Tesp 1")
-            changeStepperLocation(sLat: 0.22, sLong: 0.22)
+            changeStepperLocation(sLat: 0.23, sLong: 0.23)
         case 2:
             print("Tesp 2")
             changeStepperLocation(sLat: 0.17, sLong: 0.17)
         case 3:
             print("Tesp 3")
-            changeStepperLocation(sLat: 0.12, sLong: 0.12)
+            changeStepperLocation(sLat: 0.11, sLong: 0.11)
         case 4:
             print("Tesp 4")
             changeStepperLocation(sLat: 0.05, sLong: 0.05)

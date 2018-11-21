@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		053629AD219B0D2C009F9A02 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 053629AC219B0D2C009F9A02 /* CoreLocation.framework */; };
+		0549490B21A52F5F00FC9F2B /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0549490A21A52F5F00FC9F2B /* DetailTableViewController.swift */; };
+		056423AB21A4FFE500FBAC13 /* ShowSplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056423AA21A4FFE500FBAC13 /* ShowSplashScreen.swift */; };
 		057177F921881836006975C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057177F821881836006975C3 /* AppDelegate.swift */; };
 		057177FB21881836006975C3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057177FA21881836006975C3 /* ViewController.swift */; };
 		057177FE21881836006975C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 057177FC21881836006975C3 /* Main.storyboard */; };
@@ -21,6 +23,8 @@
 
 /* Begin PBXFileReference section */
 		053629AC219B0D2C009F9A02 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		0549490A21A52F5F00FC9F2B /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
+		056423AA21A4FFE500FBAC13 /* ShowSplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSplashScreen.swift; sourceTree = "<group>"; };
 		057177F521881836006975C3 /* BusanMap02.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusanMap02.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		057177F821881836006975C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		057177FA21881836006975C3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -67,9 +71,11 @@
 		057177F721881836006975C3 /* BusanMap02 */ = {
 			isa = PBXGroup;
 			children = (
+				0549490A21A52F5F00FC9F2B /* DetailTableViewController.swift */,
 				057177F821881836006975C3 /* AppDelegate.swift */,
 				057177FA21881836006975C3 /* ViewController.swift */,
 				057177FC21881836006975C3 /* Main.storyboard */,
+				056423AA21A4FFE500FBAC13 /* ShowSplashScreen.swift */,
 				057177FF21881837006975C3 /* Assets.xcassets */,
 				0571780121881837006975C3 /* LaunchScreen.storyboard */,
 				0571780421881837006975C3 /* Info.plist */,
@@ -160,11 +166,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0549490B21A52F5F00FC9F2B /* DetailTableViewController.swift in Sources */,
 				057177FB21881836006975C3 /* ViewController.swift in Sources */,
 				0571780E218821B1006975C3 /* BusanData.swift in Sources */,
 				057704D0219E6ADB00AC8053 /* BusabDataPM25.swift in Sources */,
 				057177F921881836006975C3 /* AppDelegate.swift in Sources */,
 				057704CE219E6AB200AC8053 /* BusabDataPM10.swift in Sources */,
+				056423AB21A4FFE500FBAC13 /* ShowSplashScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
