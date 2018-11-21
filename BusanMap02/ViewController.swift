@@ -13,6 +13,7 @@ import CoreLocation
 class ViewController: UIViewController, MKMapViewDelegate, XMLParserDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var myMapView: MKMapView!
+    @IBOutlet weak var stepper: UIStepper!
     
     var locationManager = CLLocationManager()
     
@@ -248,6 +249,40 @@ class ViewController: UIViewController, MKMapViewDelegate, XMLParserDelegate, CL
         myMapView.setRegion(region, animated: true)
         
     }
+    
+    func changeStepperLocation(sLat: Double, sLong: Double) {
+        
+        let currnetLoc: CLLocation = locationManager.location!
+        let location = CLLocationCoordinate2D(latitude: currnetLoc.coordinate.latitude, longitude: currnetLoc.coordinate.longitude)
+        let span = MKCoordinateSpan(latitudeDelta: sLat, longitudeDelta: sLong)
+        let region = MKCoordinateRegion(center: location, span: span)
+        myMapView.setRegion(region, animated: true)
+        
+    }
+    
+    @IBAction func stepperPressed(_ sender: Any) {
+        let stepVal = stepper.value
+        switch stepVal {
+        case 1:
+            print("Tesp 1")
+            changeStepperLocation(sLat: 0.22, sLong: 0.22)
+        case 2:
+            print("Tesp 2")
+            changeStepperLocation(sLat: 0.17, sLong: 0.17)
+        case 3:
+            print("Tesp 3")
+            changeStepperLocation(sLat: 0.12, sLong: 0.12)
+        case 4:
+            print("Tesp 4")
+            changeStepperLocation(sLat: 0.05, sLong: 0.05)
+        default:
+            break
+        }
+    }
+    
+    
+    
+    
     
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

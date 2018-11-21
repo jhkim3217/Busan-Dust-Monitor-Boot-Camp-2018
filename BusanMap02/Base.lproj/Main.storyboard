@@ -120,12 +120,15 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </visualEffectView>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="lcr-xY-RcG">
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="4" translatesAutoresizingMaskIntoConstraints="NO" id="lcr-xY-RcG">
                                 <rect key="frame" x="66" y="578" width="94" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="94" id="AcM-16-ewO"/>
                                     <constraint firstAttribute="height" constant="29" id="ty6-tR-K6f"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="stepperPressed:" destination="BYZ-38-t0r" eventType="valueChanged" id="ILf-pV-Hep"/>
+                                </connections>
                             </stepper>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yM-CU-prn">
                                 <rect key="frame" x="16" y="80" width="32" height="32"/>
@@ -162,6 +165,7 @@
                     <connections>
                         <outlet property="myMapView" destination="IUm-Ru-uBv" id="Vcf-DM-OcS"/>
                         <outlet property="segControlBtn" destination="vvS-Hl-hhe" id="v1j-YA-ExF"/>
+                        <outlet property="stepper" destination="lcr-xY-RcG" id="8Cy-Bk-wl9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
