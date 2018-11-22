@@ -17,8 +17,6 @@
 		0571780321881837006975C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0571780121881837006975C3 /* LaunchScreen.storyboard */; };
 		0571780C2188195E006975C3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0571780B2188195E006975C3 /* MapKit.framework */; };
 		0571780E218821B1006975C3 /* BusanData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0571780D218821B1006975C3 /* BusanData.swift */; };
-		057704CE219E6AB200AC8053 /* BusabDataPM10.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057704CD219E6AB200AC8053 /* BusabDataPM10.swift */; };
-		057704D0219E6ADB00AC8053 /* BusabDataPM25.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057704CF219E6ADB00AC8053 /* BusabDataPM25.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,8 +32,6 @@
 		0571780421881837006975C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0571780B2188195E006975C3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		0571780D218821B1006975C3 /* BusanData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusanData.swift; sourceTree = "<group>"; };
-		057704CD219E6AB200AC8053 /* BusabDataPM10.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusabDataPM10.swift; sourceTree = "<group>"; };
-		057704CF219E6ADB00AC8053 /* BusabDataPM25.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusabDataPM25.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +76,6 @@
 				0571780121881837006975C3 /* LaunchScreen.storyboard */,
 				0571780421881837006975C3 /* Info.plist */,
 				0571780D218821B1006975C3 /* BusanData.swift */,
-				057704CD219E6AB200AC8053 /* BusabDataPM10.swift */,
-				057704CF219E6ADB00AC8053 /* BusabDataPM25.swift */,
 			);
 			path = BusanMap02;
 			sourceTree = "<group>";
@@ -169,9 +163,7 @@
 				0549490B21A52F5F00FC9F2B /* DetailTableViewController.swift in Sources */,
 				057177FB21881836006975C3 /* ViewController.swift in Sources */,
 				0571780E218821B1006975C3 /* BusanData.swift in Sources */,
-				057704D0219E6ADB00AC8053 /* BusabDataPM25.swift in Sources */,
 				057177F921881836006975C3 /* AppDelegate.swift in Sources */,
-				057704CE219E6AB200AC8053 /* BusabDataPM10.swift in Sources */,
 				056423AB21A4FFE500FBAC13 /* ShowSplashScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
