@@ -17,11 +17,11 @@ class ViewController: UIViewController, MKMapViewDelegate, XMLParserDelegate, CL
     
     var locationManager = CLLocationManager()
     
-    var annotationPM10: BusanDataPM10?
-    var annotationPM25: BusanDataPM25?
+//    var annotationPM10: BusanDataPM10?
+//    var annotationPM25: BusanDataPM25?
     
-    var annotationsPM10: Array = [BusanDataPM10]()
-    var annotationsPM25: Array = [BusanDataPM25]()
+//    var annotationsPM10: Array = [BusanDataPM10]()
+//    var annotationsPM25: Array = [BusanDataPM25]()
     
     var annotation: BusanData?
     var annotations: Array = [BusanData]()
