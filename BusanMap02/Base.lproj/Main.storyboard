@@ -161,7 +161,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="FYJ-za-K7K">
-                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="O3J-7d-omZ">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="icons8-info-26" id="O3J-7d-omZ">
                             <connections>
                                 <segue destination="VV9-zE-Yhy" kind="show" identifier="" id="e1M-rC-5PX"/>
                             </connections>
@@ -655,6 +655,7 @@
     </scenes>
     <resources>
         <image name="LaunchImage" width="512" height="512"/>
+        <image name="icons8-info-26" width="19.5" height="19.5"/>
         <image name="map-center" width="51.428569793701172" height="51.428569793701172"/>
     </resources>
 </document>
