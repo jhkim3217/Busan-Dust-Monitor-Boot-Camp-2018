@@ -586,21 +586,7 @@
                                     <constraint firstAttribute="height" constant="310" id="wKn-JO-hwr"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="부산 미세먼지 지도" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0eR-aF-k9k">
-                                <rect key="frame" x="77" y="143" width="221" height="0.0"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                <color key="textColor" red="0.2192387522" green="0.56604278649999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Er3-pQ-lcZ">
-                                <rect key="frame" x="167.5" y="72" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="DKH-Qx-6fj"/>
-                                    <constraint firstAttribute="height" constant="40" id="ERw-Lu-HaF"/>
-                                </constraints>
-                                <color key="color" red="0.19687976486388303" green="0.64612671339166705" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="동의과학대학교                                     컴퓨터정보과" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0e9-Oi-iWW">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="동의과학대학교                                     컴퓨터정보과 제작" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0e9-Oi-iWW">
                                 <rect key="frame" x="100" y="463" width="175" height="90"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="Gpk-5g-jHr"/>
@@ -610,17 +596,30 @@
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Er3-pQ-lcZ">
+                                <rect key="frame" x="162" y="212" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="DKH-Qx-6fj"/>
+                                    <constraint firstAttribute="height" constant="40" id="ERw-Lu-HaF"/>
+                                </constraints>
+                                <color key="color" red="1" green="0.6671401092" blue="0.13889048949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="부산 미세먼지 지도" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0eR-aF-k9k">
+                                <rect key="frame" x="72" y="91" width="221" height="36"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <color key="textColor" red="0.2192387522" green="0.56604278649999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="0e9-Oi-iWW" firstAttribute="centerX" secondItem="EBr-ng-gYy" secondAttribute="centerX" id="4cT-n2-SqR"/>
                             <constraint firstItem="BVQ-oz-4ud" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0eR-aF-k9k" secondAttribute="trailing" symbolic="YES" id="AFp-vh-u9z"/>
-                            <constraint firstItem="Er3-pQ-lcZ" firstAttribute="top" secondItem="BVQ-oz-4ud" secondAttribute="top" constant="52" id="IVj-Gy-RS3"/>
-                            <constraint firstItem="EBr-ng-gYy" firstAttribute="top" secondItem="0eR-aF-k9k" secondAttribute="bottom" constant="-8" id="LUd-HR-QRg"/>
-                            <constraint firstItem="Er3-pQ-lcZ" firstAttribute="centerX" secondItem="jBX-RK-Awm" secondAttribute="centerX" id="QTy-QQ-k7K"/>
-                            <constraint firstItem="0eR-aF-k9k" firstAttribute="centerX" secondItem="jBX-RK-Awm" secondAttribute="centerX" id="WkX-j2-wzm"/>
-                            <constraint firstItem="0eR-aF-k9k" firstAttribute="top" secondItem="Er3-pQ-lcZ" secondAttribute="bottom" constant="31" id="aI4-aM-sx7"/>
-                            <constraint firstItem="Er3-pQ-lcZ" firstAttribute="centerX" secondItem="EBr-ng-gYy" secondAttribute="centerX" id="cWJ-kL-SxU"/>
+                            <constraint firstItem="Er3-pQ-lcZ" firstAttribute="top" secondItem="0eR-aF-k9k" secondAttribute="bottom" constant="85" id="F9C-f5-f3o"/>
+                            <constraint firstItem="EBr-ng-gYy" firstAttribute="top" secondItem="0eR-aF-k9k" secondAttribute="bottom" constant="8" id="LUd-HR-QRg"/>
+                            <constraint firstItem="Er3-pQ-lcZ" firstAttribute="centerX" secondItem="jBX-RK-Awm" secondAttribute="centerX" constant="-5.5" id="QTy-QQ-k7K"/>
+                            <constraint firstItem="0eR-aF-k9k" firstAttribute="centerX" secondItem="jBX-RK-Awm" secondAttribute="centerX" constant="-5" id="WkX-j2-wzm"/>
+                            <constraint firstItem="Er3-pQ-lcZ" firstAttribute="centerX" secondItem="EBr-ng-gYy" secondAttribute="centerX" constant="-5.5" id="cWJ-kL-SxU"/>
                             <constraint firstItem="0e9-Oi-iWW" firstAttribute="top" secondItem="EBr-ng-gYy" secondAttribute="bottom" constant="18" id="mqv-Ig-a7D"/>
                             <constraint firstItem="BVQ-oz-4ud" firstAttribute="bottom" secondItem="0e9-Oi-iWW" secondAttribute="bottom" constant="114" id="rOz-Ax-13g"/>
                         </constraints>

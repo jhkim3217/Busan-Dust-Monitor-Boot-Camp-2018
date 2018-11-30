@@ -48,6 +48,9 @@ class ViewController: UIViewController, MKMapViewDelegate, XMLParserDelegate, CL
     var vPM25Cai: String?
     var mPM25Cai: String?
     
+    var pm10Val: String?  // value test
+    var pm25Val: String?
+    
     // 1시간 마다 호출위해 타이머 객체 생성
     var timer = Timer()
     var currentTime: String?
@@ -118,21 +121,28 @@ class ViewController: UIViewController, MKMapViewDelegate, XMLParserDelegate, CL
             print("Seg o pressed")
            // zoomToRegion()
             
+            // 기존 데이터 삭제
+//            annotations.removeAll()
             removeAllAnnotations()
+           
             mapDisplay()
             
         } else if segControlBtn.selectedSegmentIndex == 1 {
             print("Seg 1 pressed")
             //zoomToRegion()
+//            annotations.removeAll()
             removeAllAnnotations()
+            
             mapDisplay()
         }
+        print(annotations.count, self.myMapView.annotations.count)
     }
     
     func mapDisplay() {
+        
         for item in items {
             let dSite = item["site"]
-            //            print("dSite = \(String(describing: dSite))")
+            print("dSite = \(items.count) \(String(describing: dSite))")
             
             // 추가 데이터 처리
             for (key, value) in addrs {
@@ -265,63 +275,47 @@ class ViewController: UIViewController, MKMapViewDelegate, XMLParserDelegate, CL
         switch stepVal {
         case 1:
             print("Tesp 1")
-            changeStepperLocation(sLat: 0.23, sLong: 0.23)
+            changeStepperLocation(sLat: 0.28, sLong: 0.28)
         case 2:
             print("Tesp 2")
-            changeStepperLocation(sLat: 0.17, sLong: 0.17)
+            changeStepperLocation(sLat: 0.20, sLong: 0.20)
         case 3:
             print("Tesp 3")
-            changeStepperLocation(sLat: 0.11, sLong: 0.11)
+            changeStepperLocation(sLat: 0.12, sLong: 0.12)
         case 4:
             print("Tesp 4")
-            changeStepperLocation(sLat: 0.05, sLong: 0.05)
+            changeStepperLocation(sLat: 0.04, sLong: 0.04)
         default:
             break
         }
     }
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-
-        let reuseID = "MyPin"
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseID) as? MKMarkerAnnotationView
-        //let label = UILabel(frame: CGRect(x: -2, y: 12, width: 30, height: 30))
-  
+        
         let seg_index = segControlBtn.selectedSegmentIndex
-        //print("s_index = \(seg_index)")
         
-        var iPm10Val = 0
-        var iPm25Val = 0
-        
-        // Leave default annotation for user location
-        if annotation is MKUserLocation {
-            return nil
-        }
-        
-        if annotationView == nil {
-            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
-            annotationView!.canShowCallout = true
-            annotationView?.animatesWhenAdded = true
+        if seg_index == 0 {  // PM10
+            let reuseID = "pm10"
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseID) as? MKMarkerAnnotationView
+            var iPm10Val = 0
             
-            //annotationView?.animatesDrop = true
+            if annotation is MKUserLocation {
+                return nil
+            }
             
-//            annotationView!.clusteringIdentifier = "re"
-//            annotationView?.markerTintColor = UIColor.red
-
-            let castBusanData = annotationView!.annotation as? BusanData
-            
-            if seg_index == 0 {
-                let pm10Val = castBusanData?.pm10
-
+            if annotationView == nil {
+                annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
+                annotationView!.canShowCallout = true
+                annotationView?.animatesWhenAdded = true
+                
+                let castBusanData = annotationView!.annotation as? BusanData
+                pm10Val = castBusanData?.pm10
+                
                 //let pm10Val = castBusanData?.pm10
                 let pm10Station = castBusanData?.title
                 //let pm10ValCai = castBusanData?.pm10Cai
                 print("\(String(describing: pm10Station)) pm10 val = \(String(describing: pm10Val))")
                 
-//                label.textColor = UIColor.red
-//                label.text = pm10Val
-//                annotationView!.addSubview(label)
-//                print("pm10 = \(String(describing: label.text))")
-                //print("pm10 Cai = \(String(describing: pm10ValCai))")
                 annotationView?.glyphTintColor = UIColor.lightGray
                 annotationView?.glyphText = pm10Val
                 
@@ -329,7 +323,7 @@ class ViewController: UIViewController, MKMapViewDelegate, XMLParserDelegate, CL
                     iPm10Val = Int(pm10Val!)!
                 } else {
                     // dumy value
-                    iPm10Val = 30
+                    //iPm10Val = 0
                 }
                 
                 switch iPm10Val {
@@ -343,73 +337,154 @@ class ViewController: UIViewController, MKMapViewDelegate, XMLParserDelegate, CL
                         annotationView?.markerTintColor = UIColor.red // 매우나쁨
                     default : break
                 }
-                
-                
-//                switch pm10ValCai {
-//                    case "4": annotationView?.markerTintColor = UIColor.red // 매우나쁨
-//                    case "3": annotationView?.markerTintColor = UIColor.orange // 나쁨
-//                    case "2": annotationView?.markerTintColor = UIColor.green // 보통
-//                    case "1" : annotationView?.markerTintColor = UIColor.blue // 좋음
-//                    //default: annotationView?.markerTintColor = UIColor.black// 오류
-//                    default : break
-//                }
-                
-            } else if seg_index == 1 {
-                
-                if let pm25Val = castBusanData?.pm25 {
-                    iPm25Val = Int(pm25Val)!
-                } else {
-                    // dumy value
-                    iPm25Val = 20
-                }
-                
-//                if pm25Val != nil {
-//                    iPm25Val = Int(pm25Val!)!
-//                } else {
-//                    iPm25Val = 20
-//                }
-                //let pm25CalCai = castBusanData?.pm25Cai
-                //print("pm25 val = \(String(describing: pm25CalCai))")
-
-//                label.textColor = UIColor.blue
-//                label.text = pm25Val
-//                annotationView!.addSubview(label)
-                //print("pm25 = \(String(describing: pm25CalCai))")
-                //print("pm25 Cai = \(String(describing: pm25CalCai))")
-                
-                annotationView?.glyphTintColor = UIColor.lightGray
-                annotationView?.glyphText = String(iPm25Val)
-
-                switch iPm25Val {
-                case 0..<16:
-                    annotationView?.markerTintColor = UIColor.blue // 좋음
-                case 16..<36:
-                    annotationView?.markerTintColor = UIColor.green // 보통
-                case 36..<75:
-                    annotationView?.markerTintColor = UIColor.yellow // 나쁨
-                case 76..<500:
-                    annotationView?.markerTintColor = UIColor.red // 매우나쁨
-                default : break
-                }
-
-//                switch pm25CalCai {
-//                    case "4": annotationView?.markerTintColor = UIColor.red // 매우나쁨
-//                    case "3": annotationView?.markerTintColor = UIColor.orange // 나쁨
-//                    case "2": annotationView?.markerTintColor = UIColor.green // 보통
-//                    case "1" : annotationView?.markerTintColor = UIColor.blue // 좋음
-//                    //default: annotationView?.markerTintColor = UIColor.black // 오류
-//                default : break
-//                }
+            } else {
+                annotationView?.annotation = annotation
             }
             
+            let btn = UIButton(type: .detailDisclosure)
+            annotationView?.rightCalloutAccessoryView = btn
+            return annotationView
+            
+        } else if seg_index == 1 {  // PM25
+            let reuseID = "pm25"
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseID) as? MKMarkerAnnotationView
+            var iPm25Val = 0
+            
+            if annotation is MKUserLocation {
+                return nil
+            }
+            
+            if annotationView == nil {
+                annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
+                annotationView!.canShowCallout = true
+                annotationView?.animatesWhenAdded = true
+            
+                let castBusanData = annotationView!.annotation as? BusanData
+                pm25Val = castBusanData?.pm25
+                
+                iPm25Val = Int(pm25Val!)!
+                print("iPm25Val = \(iPm25Val)")
+                
+                annotationView?.glyphTintColor = UIColor.lightGray
+                //                annotationView?.glyphText = String(iPm25Val)
+                
+                annotationView?.glyphText = pm25Val
+                
+                switch iPm25Val {
+                    case 0..<16:
+                        annotationView?.markerTintColor = UIColor.blue // 좋음
+                    case 16..<36:
+                        annotationView?.markerTintColor = UIColor.green // 보통
+                    case 36..<75:
+                        annotationView?.markerTintColor = UIColor.yellow // 나쁨
+                    case 76..<500:
+                        annotationView?.markerTintColor = UIColor.red // 매우나쁨
+                    default : break
+                }
+            } else {
+                annotationView?.annotation = annotation
+            }
+
+            let btn = UIButton(type: .detailDisclosure)
+            annotationView?.rightCalloutAccessoryView = btn
+            return annotationView
         } else {
-            annotationView?.annotation = annotation
+            
+            return annotation as! MKAnnotationView
         }
-        
-        let btn = UIButton(type: .detailDisclosure)
-        annotationView?.rightCalloutAccessoryView = btn
-        return annotationView
     }
+        
+//    let btn = UIButton(type: .detailDisclosure)
+//    annotationView?.rightCalloutAccessoryView = btn
+//    return annotationView
+
+//        let reuseID = "MyPin"
+//        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseID) as? MKMarkerAnnotationView
+//        //let label = UILabel(frame: CGRect(x: -2, y: 12, width: 30, height: 30))
+//
+//        let seg_index = segControlBtn.selectedSegmentIndex
+//        //print("s_index = \(seg_index)")
+//
+//        var iPm10Val = 0
+//        var iPm25Val = 0
+//
+//        // Leave default annotation for user location
+//        if annotation is MKUserLocation {
+//            return nil
+//        }
+//
+//        if annotationView == nil {
+//            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
+//            annotationView!.canShowCallout = true
+//            annotationView?.animatesWhenAdded = true
+//
+//            let castBusanData = annotationView!.annotation as? BusanData
+//
+//            if seg_index == 0 {
+//                pm10Val = castBusanData?.pm10
+//
+//                //let pm10Val = castBusanData?.pm10
+//                let pm10Station = castBusanData?.title
+//                //let pm10ValCai = castBusanData?.pm10Cai
+//                print("\(String(describing: pm10Station)) pm10 val = \(String(describing: pm10Val))")
+//
+//                annotationView?.glyphTintColor = UIColor.lightGray
+//                annotationView?.glyphText = pm10Val
+//
+//                if pm10Val != nil {
+//                    iPm10Val = Int(pm10Val!)!
+//                } else {
+//                    // dumy value
+//                    //iPm10Val = 0
+//                }
+//
+//                switch iPm10Val {
+//                    case 0..<31:
+//                        annotationView?.markerTintColor = UIColor.blue // 좋음
+//                    case 31..<81:
+//                        annotationView?.markerTintColor = UIColor.green // 보통
+//                    case 81..<151:
+//                        annotationView?.markerTintColor = UIColor.yellow
+//                    case 151..<600:
+//                        annotationView?.markerTintColor = UIColor.red // 매우나쁨
+//                    default : break
+//                }
+//
+//            } else if seg_index == 1 {
+//
+//                pm25Val = castBusanData?.pm25
+//                print("pm25*** = \(String(describing: pm25Val))")
+//
+//                iPm25Val = Int(pm25Val!)!
+//                print("iPm25Val = \(iPm25Val)")
+//
+//                annotationView?.glyphTintColor = UIColor.lightGray
+////                annotationView?.glyphText = String(iPm25Val)
+//
+//                annotationView?.glyphText = pm25Val
+//
+//                switch iPm25Val {
+//                    case 0..<16:
+//                        annotationView?.markerTintColor = UIColor.blue // 좋음
+//                    case 16..<36:
+//                        annotationView?.markerTintColor = UIColor.green // 보통
+//                    case 36..<75:
+//                        annotationView?.markerTintColor = UIColor.yellow // 나쁨
+//                    case 76..<500:
+//                        annotationView?.markerTintColor = UIColor.red // 매우나쁨
+//                    default : break
+//                }
+//            }
+//
+//        } else {
+//            annotationView?.annotation = annotation
+//        }
+//
+//        let btn = UIButton(type: .detailDisclosure)
+//        annotationView?.rightCalloutAccessoryView = btn
+//        return annotationView
+    
+//    }
 
     // rightCalloutAccessoryView를 눌렀을때 호출되는 delegate method
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
@@ -423,24 +498,16 @@ class ViewController: UIViewController, MKMapViewDelegate, XMLParserDelegate, CL
             let dPM10: Int = Int(vPM10!)!
             
             switch Int(dPM10) {
-            case 0..<31:
-                mPM10Cai = "좋음" // 좋음
-            case 31..<81:
-                mPM10Cai = "보통"// 보통
-            case 81..<151:
-                mPM10Cai = "나쁨" // 나쁨
-            case 76..<500:
-                mPM10Cai = "매우나쁨" // 매우나쁨
-            default : break
+                case 0..<31:
+                    mPM10Cai = "좋음" // 좋음
+                case 31..<81:
+                    mPM10Cai = "보통"// 보통
+                case 81..<151:
+                    mPM10Cai = "나쁨" // 나쁨
+                case 76..<500:
+                    mPM10Cai = "매우나쁨" // 매우나쁨
+                default : break
             }
-            
-//            switch vPM10Cai {
-//                case "1": mPM10Cai = "좋음"
-//                case "2": mPM10Cai = "보통"
-//                case "3": mPM10Cai = "나쁨"
-//                case "4": mPM10Cai = "아주나쁨"
-//                default : break
-//            }
             
             let mTitle = "미세먼지(PM 10) : \(mPM10Cai!)(\(vPM10!) ug/m3)"
             let ac = UIAlertController(title: vStation! + " 대기질 측정소", message: nil, preferredStyle: .alert)
