@@ -390,7 +390,7 @@ class ViewController: UIViewController, MKMapViewDelegate, XMLParserDelegate, CL
             return annotationView
         } else {
             
-            return annotation as! MKAnnotationView
+            return annotation as? MKAnnotationView
         }
     }
         
