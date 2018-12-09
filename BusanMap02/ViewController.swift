@@ -332,7 +332,7 @@ class ViewController: UIViewController, MKMapViewDelegate, XMLParserDelegate, CL
                     case 31..<81:
                         annotationView?.markerTintColor = UIColor.green // 보통
                     case 81..<151:
-                        annotationView?.markerTintColor = UIColor.yellow
+                        annotationView?.markerTintColor = UIColor.orange
                     case 151..<600:
                         annotationView?.markerTintColor = UIColor.red // 매우나쁨
                     default : break
@@ -376,7 +376,7 @@ class ViewController: UIViewController, MKMapViewDelegate, XMLParserDelegate, CL
                     case 16..<36:
                         annotationView?.markerTintColor = UIColor.green // 보통
                     case 36..<75:
-                        annotationView?.markerTintColor = UIColor.yellow // 나쁨
+                        annotationView?.markerTintColor = UIColor.orange // 나쁨
                     case 76..<500:
                         annotationView?.markerTintColor = UIColor.red // 매우나쁨
                     default : break

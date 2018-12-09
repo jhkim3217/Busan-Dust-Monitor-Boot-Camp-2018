@@ -28,9 +28,9 @@
 		<true/>
 	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>지도 사용을 위하여 위치정보 사용을 허락합니다.</string>
+	<string>지도 사용을 위하여 위치정보 사용이 필요합니다.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>지도 사용을 위하여 위치정보 사용을 허락합니다.</string>
+	<string>지도 사용을 위하여 위치정보 사용을 필요합니다.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>Main</string>
 	<key>UIMainStoryboardFile</key>
